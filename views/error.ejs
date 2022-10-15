@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<%- include('./_partials/head.ejs') %>
+<body>
+    <!-- error handling conditions -->
+  <main class="error-main">
+     <% if(status_code&&status_code==='404'){ %>
+     <img src="/assests/404.svg" alt="404 error">
+     <% }else{ %>
+     <img src="/assests/500.svg" alt="500 error">
+     <% } %>
+     <div>
+        <div>
+           <h2 class="status-code"><%=status_code %></h2>
+            <p class="error-message"><%= error_message %></p>
+        </div>
+        <p class="dev-qoute"><%= dev_qoute %></p>
+        <a href="/"><button class="go-back">go back</button></a>
+     </div>
+  
+  </main>
+</body>
+</html>

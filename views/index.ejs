@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="index.css"
+      type="text/css"
+    />
+    <link rel="shortcut icon" href="/assests/shortify_logo.svg" type="image/x-icon">
+    <title>shortify</title>
+  </head>
+  <body>
+      <header class="header-section">
+        <div class="shortify-logo"><img src="/assests/shortify_logo.svg" alt=""><h2>shortify</h2></div>
+        <div><h4>by Sevenn</h4></div>
+      </header>
+
+      <section class="main-section">
+
+      <div class="input-section">
+       <form action="/" method="POST">
+          <input class="url-input" type="text" name="original_url" id="url" placeholder="https://your/long_url/here" value=<% if(original_url){%><%=original_url%><%}%>>
+          <button class="button-gradient" type="submit" id="shorten">shorten</button>
+        </form>
+      </div>
+
+      <% if (short_url) { %>
+        <div class="short-url">
+            <div>
+            <h4>shortend url :</h4>
+          <a href=<%= short_url %> id="short_url" target
+            ="__blank">
+            <%= short_url %>
+          </a>
+        </div>
+          <span>
+            <i class="material-icons-outlined material-icons" id="copy_content" title="copy">
+            content_copy
+            </i>
+            or 
+            <a href=<%= short_url %> target="__blank">
+            <i class="material-icons-outlined material-icons material-icons__modify" title="visit link">
+              launch
+            </i>
+          </a>
+          </span>
+        </div>
+          <% } %>
+  </section>
+  </body>
+  <script src="index.js"></script>
+</html>

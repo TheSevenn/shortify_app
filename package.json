@@ -1,0 +1,22 @@
+{
+  "name": "shortify",
+  "version": "1.0.0",
+  "description": "a url shortener ",
+  "main": "index.js",
+  "author": "Sevenn",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "dev": "nodemon app.js"
+  }
+}

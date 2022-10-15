@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+// style guides and theme
+$black_color:#1B1818;
+$purple_color:#7800FF;
+$pink_color:#E900FF;
+$yellow_color:#FFC600;
+$white_color:#FFFFFF;
+$dark_color:#545454;
+$grey_color:#333333;
+$gradient_color:linear-gradient(45deg,#323232,#524F4F22);
+$font_family:'Poppins', sans-serif;
+
+// custom html reset
+*,*::before,*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+}
+
+// flex mixin
+@mixin Flex($direction) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+}
+
+// html style guides
+html{
+    font-size: 10px;
+    font-family: $font_family;
+    color:$white_color;
+}
+
+body{
+    background-color: $black_color;
+    @include Flex(column);
+}
+
+a{
+    text-decoration: none;
+}
+
+
+// styles for index page index.ejs in view in view 
+header.header-section{
+@include Flex(column);
+margin-bottom: 10rem;
+margin-top:5rem;
+ 
+
+  div.shortify-logo{
+    @include Flex(row)
+  }
+  div{
+    h2{
+        font-size: 4.8rem;
+        text-transform: uppercase;
+        color:transparent;
+        background-image:linear-gradient(105deg,$purple_color,$black_color);
+        background-clip:text;
+        // border-bottom: 0.1px solid $grey_color;
+    }
+
+    h4{
+        font-size: 1.6rem;
+        font-weight:500;
+        color:$grey_color;
+        border-top: 0.05px solid $grey_color;
+        width:16rem;
+        text-align: center;
+        padding: 0.7rem;
+    }
+  }
+}
+
+section.main-section{
+    @include Flex(column);
+
+    div.input-section{
+        .url-input{
+            background-color: transparent;
+            border-radius:0.4rem;
+            border:none;
+            outline:none;
+            background-image: $gradient_color;
+            box-shadow: 0 2px 4px #000;
+            color:$white_color;
+            padding-block:1.3rem;
+            padding-inline: 2rem;
+            width:min(52.4rem,90vw);
+            border-top:0.5px solid $white_color;
+            border-left:0.5px solid $white_color;
+            font-size: 1.6rem;
+
+            &::placeholder{
+                color:$white_color;
+            }
+        }
+
+        .button-gradient{
+            background-image: linear-gradient(90deg,$purple_color,$pink_color);
+            border: none;
+            outline:none;
+            padding-block:1rem;
+            padding-inline: 2.4rem;
+            border-radius: 0.4rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px #000;
+            cursor:pointer;
+            margin-left: 1rem;
+            position: relative;
+
+            &::after{
+                content:"";
+                position: absolute;
+                background-color: rgba(255,255,255,5%);
+                top:7%;
+                left:4%;
+                height:1rem;
+                width:92%;
+                border-radius: 1rem;
+                border-top:0.1rem solid #ffffffcf;
+            }
+        }
+    }
+}
+
+div.short-url{
+    @include Flex(row);
+    justify-content: space-between;
+    box-shadow: 0 2px 4px #000;
+    margin-block: 4rem;
+    padding-inline:2rem;
+    padding-block: 1.2rem;
+    width:min(65rem,90vw);
+    font-size: 1.6rem;
+
+  div{
+      h4{
+        font-size: 1.6rem;
+        font-weight: 600;
+        color:$yellow_color;
+        display: inline-block;
+       }
+
+      a{
+        display: inline-block;
+        color:#ffffffcc;
+        font-weight: 300;
+        font-size: 1.4rem;
+        text-decoration: none;
+      }
+
+    }
+      span{
+        border-left:0.1rem solid $grey_color;
+        padding-inline:1.6rem;
+        padding-block: 0.4rem;
+        @include Flex(row);
+        flex-wrap: wrap;
+        color:$dark_color;
+        font-size:1.8rem;
+      }
+}
+
+.material-icons{
+    color:#9E9E9E;
+    font-size: 2.4rem;
+    margin-inline:1rem;
+    cursor:pointer;
+}
+
+.material-icons.material-icons__modify{
+    padding-top:0.7rem;
+}
+
+
+@media only screen and (max-width:700px){
+.input-section .short-url{
+    margin:0;
+}
+
+div.short-url div a{
+    margin-bottom: 1rem;
+}
+.input-section{
+    form{
+    @include Flex(column);
+    align-items: center;
+    gap:1.6rem;
+    }
+}
+div.short-url{
+    @include Flex(column);
+    box-shadow: none;
+
+    span{
+        border:none;
+    }
+}
+}
+
+
+// error page styles error.ejs in view
+
+main.error-main{
+    @include Flex(column);
+    gap:2rem;
+    justify-content: center;
+    padding: 1rem;
+    margin:0.8rem;
+    margin-block: 4rem;
+    img{
+        max-width:min(90vw,50rem);
+    }
+
+    div{
+        div{
+            @include Flex(row);
+            gap: 1rem;
+        h2.status-code{
+            font-size: 6.4rem;
+            background-image:linear-gradient(45deg,$purple_color,$pink_color);
+            background-clip: text;
+            color:transparent;
+            filter: drop-shadow(0 4px 4px #000);
+        }
+
+        p.error-message{
+            font-size: 1.8rem;
+            color: $grey_color;
+            font-weight: 600;
+            text-transform: capitalize;
+            line-height: 1.4;
+            margin-block:0.8rem;
+            max-width:16ch;
+        }
+    }
+
+        p.dev-qoute{
+            font-size:1.8rem;
+        color:$yellow_color;
+        text-transform: capitalize;
+        font-weight: 500;
+        line-height: 1.4;
+        margin-block:0.8rem;
+        }
+
+        button.go-back{
+            background-color: $purple_color;
+            border: none;
+            outline:none;
+            padding-block:1rem;
+            padding-inline: 2.4rem;
+            border-radius: 0.4rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px #000;
+            cursor:pointer;
+            position: relative;
+
+            &::after{
+                content:"";
+                position: absolute;
+                background-color: rgba(255,255,255,5%);
+                top:7%;
+                left:4%;
+                height:1rem;
+                width:92%;
+                border-radius: 1rem;
+                border-top:0.1rem solid #ffffffcf;
+            }
+        }
+    }
+}
+
+
