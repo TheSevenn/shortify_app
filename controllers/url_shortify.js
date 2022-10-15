@@ -2,24 +2,19 @@ import crypto from "crypto";
 import { read_document_by } from "../database/actions/read.js";
 import { create_document } from "../database/actions/create.js";
 import urlModel from "../models/urlModel.js";
-import { log } from "../utils/log.js";
 import { base_url } from "../utils/constants.js";
 
 export const url_shortify = async ( req, res ) => {
     const original_url = req.body.original_url;
     const restrict_in = req.restrict_in;
-    console.log( restrict_in );
     try {
         if( restrict_in > 0 ) {
-
             if( original_url ) {
                 const response = await read_document_by( original_url, "url", urlModel );
-                console.log( response );
                 if( response && response.url_id ) {
                     res.status( 200 ).render( 'index', {
                         short_url: `${base_url}/${response.url_id}`,
                         original_url: response.original_url,
-                        restrict_in: req.restrict_in
                     } );
                 }
                 else {
@@ -29,9 +24,7 @@ export const url_shortify = async ( req, res ) => {
                     const response = await create_document( {
                         url_id: url_id,
                         original_url: original_url,
-                        restrict_in: req.restrict_in
                     }, urlModel );
-                    console.log( original_url, url_id, response );
                     if( response && response.url_id ) res.status( 200 ).render( 'index', {
                         short_url: `${base_url}/${response.url_id}`,
                         original_url: response.original_url
@@ -48,7 +41,6 @@ export const url_shortify = async ( req, res ) => {
             dev_qoute: "Wow! now lets wait for an hour..."
         } );
     } catch( error ) {
-        log( error.message, "url_shortify.js", 21 );
         res.status( 500 ).render( 'error', {
             status_code: '500',
             error_message: "something went wrong on our side.",

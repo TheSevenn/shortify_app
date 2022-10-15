@@ -7,7 +7,6 @@ import express from "express";
 const app = express();
 
 import router from "./routes/routes.js";
-import { logger } from "./middlewares/logger.js";
 import { mongo_uri } from "./utils/constants.js";
 import { connectToDB } from "./database/connectToDB.js";
 
@@ -19,7 +18,8 @@ app.set( 'view engine', 'ejs' );
 // connect to database
 connectToDB( mongo_uri );
 
-app.use( logger );
+// used for dev purpose
+// app.use( logger );
 app.use( "/", router );
 
 // listen at port 
